@@ -1,5 +1,9 @@
 # SQUAD GPT — 성민 FC
 
+<p align="center">
+  <img src="docs/images/squad-banner.jpg" alt="성민 FC — 감독과 함께하는 에이전트 스쿼드" width="600" />
+</p>
+
 > 1인 스튜디오 + AI 에이전트 팀으로 운영되는 프로젝트
 
 **"다양한 AI 자아와 협업하며, 사람들에게 진짜 도움이 되는 프로덕트를 만든다."**
