@@ -108,21 +108,86 @@
 - **커밋**: 한국어 커밋 메시지 허용. 의미 단위로 커밋.
 - **파일 구조**: `src/` 하위에 기능별 폴더. `playbook/`은 에이전트 관련 자산.
 
+## 훈련 종료 루틴
+
+모든 훈련 세션 종료 시 다음 절차를 따른다:
+
+### 1. 문서 기록 (Messi 또는 Pedri)
+
+**필수 기록:**
+- `sessions/YYYY-MM-DD_훈련-세션-기록.md` — 오늘 논의, 산출물, 토큰 사용량
+- `SQUAD 운영/토큰 사용량/YYYY-MM-DD.md` — 일일 토큰 사용량 상세
+- `discussions/` — 주요 토의가 있었다면 토의록 저장
+
+**템플릿 사용:**
+- `sessions/_TEMPLATE.md` 복사하여 작성
+- Pedri가 단순 기록, Messi가 인사이트/회고 검토
+
+### 2. GitHub Push (자동화 예정)
+
+**현재 절차:**
+```bash
+cd C:\Users\정성민\Downloads\SQUAD_GPT
+git add .
+git status  # 변경 파일 확인
+git commit -m "훈련 세션 기록 — YYYY-MM-DD
+
+- [주요 작업 내용 요약]
+- 참여: [에이전트 목록]
+
+Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+git push origin main
+```
+
+**향후 개선:**
+- Pedri가 자동으로 커밋 메시지 생성
+- 세션 기록 기반으로 자동 커밋
+
+### 3. 옵시디언 동기화
+
+**MinisDevDesk 문서 확인:**
+- `Projects/SQUAD_GPT/sessions/` — 세션 기록 저장 확인
+- `Projects/SQUAD_GPT/discussions/` — 토의록 저장 확인
+- `SQUAD 운영/토큰 사용량/` — 토큰 기록 저장 확인
+
+**Pedri 책임:**
+- 파일이 올바른 폴더에 있는지 확인
+- 파일명이 규칙에 맞는지 확인
+- 링크 깨짐 없는지 확인
+
+---
+
 ## 프로젝트 구조
+
+### 코드 저장소 (Downloads)
 
 ```
 SQUAD_GPT/
 ├── CLAUDE.md              ← 이 파일 (에이전트 팀 설정)
 ├── src/                   ← React 앱 소스
 ├── playbook/
+│   ├── discussions/       ← 에이전트 토의록
 │   ├── standards/         ← 코딩/기술/Git/아키텍처 규칙
 │   ├── templates/         ← 킥오프/회고 템플릿
 │   └── prompts/           ← 에이전트 개별 프롬프트
-│       ├── _README.md
-│       ├── core/          ← 핵심 5인 (guardiola, messi, cr7, modric, buffon)
-│       └── reserves/      ← 나머지 11명 (zidane, beckham, son 등)
+│       ├── core/          ← 핵심 6인
+│       └── reserves/      ← 리저브 11명
 ├── public/
 ├── dist/                  ← 빌드 결과물
 ├── package.json
 └── vite.config.js
+```
+
+### 문서 저장소 (MinisDevDesk)
+
+```
+MinisDevDesk/Projects/SQUAD_GPT/
+├── decisions/             ← 의사결정 기록
+├── discussions/           ← 에이전트 토의록
+├── retrospectives/        ← 회고
+├── sessions/              ← 훈련 세션 기록
+├── prompts/               ← 에이전트 프롬프트 (백업)
+├── standards/             ← 규칙 및 가이드 (백업)
+├── templates/             ← 템플릿 (백업)
+└── PEDRI_MISSION.md       ← Pedri 미션
 ```
