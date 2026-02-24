@@ -127,7 +127,7 @@
 
 **현재 절차:**
 ```bash
-cd C:\Users\정성민\Downloads\SQUAD_GPT
+cd "C:\Users\jug71\OneDrive - arshexa\바탕 화면\-SQUAD_GPT--main\-SQUAD_GPT--main"
 git add .
 git status  # 변경 파일 확인
 git commit -m "훈련 세션 기록 — YYYY-MM-DD
@@ -135,7 +135,7 @@ git commit -m "훈련 세션 기록 — YYYY-MM-DD
 - [주요 작업 내용 요약]
 - 참여: [에이전트 목록]
 
-Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 git push origin main
 ```
 
@@ -145,14 +145,16 @@ git push origin main
 
 ### 3. 옵시디언 동기화
 
-**MinisDevDesk 문서 확인:**
-- `Projects/SQUAD_GPT/sessions/` — 세션 기록 저장 확인
-- `Projects/SQUAD_GPT/discussions/` — 토의록 저장 확인
-- `SQUAD 운영/토큰 사용량/` — 토큰 기록 저장 확인
+**볼트 경로:** `C:\Users\jug71\OneDrive - arshexa\문서\SQUADv2`
+
+**저장 위치:**
+- `SQUADv2/Projects/SQUAD_GPT/sessions/` — 세션 기록
+- `SQUADv2/Projects/SQUAD_GPT/discussions/` — 토의록
+- `SQUADv2/SQUAD 운영/토큰 사용량/` — 토큰 기록
 
 **Pedri 책임:**
 - 파일이 올바른 폴더에 있는지 확인
-- 파일명이 규칙에 맞는지 확인
+- 파일명이 규칙에 맞는지 확인 (`YYYY-MM-DD_내용.md`)
 - 링크 깨짐 없는지 확인
 
 ---
@@ -178,16 +180,27 @@ SQUAD_GPT/
 └── vite.config.js
 ```
 
-### 문서 저장소 (MinisDevDesk)
+### 문서 저장소 (옵시디언 볼트)
+
+**경로:** `C:\Users\jug71\OneDrive - arshexa\문서\SQUADv2`
 
 ```
-MinisDevDesk/Projects/SQUAD_GPT/
-├── decisions/             ← 의사결정 기록
-├── discussions/           ← 에이전트 토의록
-├── retrospectives/        ← 회고
-├── sessions/              ← 훈련 세션 기록
-├── prompts/               ← 에이전트 프롬프트 (백업)
-├── standards/             ← 규칙 및 가이드 (백업)
-├── templates/             ← 템플릿 (백업)
-└── PEDRI_MISSION.md       ← Pedri 미션
+SQUADv2/
+├── HOME.md
+├── Playbook Hub.md
+├── Projects/
+│   └── SQUAD_GPT/
+│       ├── sessions/          ← 훈련 세션 기록
+│       ├── discussions/       ← 에이전트 토의록
+│       ├── decisions/         ← 의사결정 기록
+│       ├── retrospectives/    ← 회고
+│       ├── prompts/           ← 에이전트 프롬프트 (백업)
+│       ├── standards/         ← 규칙 및 가이드 (백업)
+│       ├── templates/         ← 템플릿 (백업)
+│       └── PEDRI_MISSION.md   ← Pedri 미션
+└── SQUAD 운영/
+    ├── 토큰 사용량/           ← 일일 토큰 기록
+    ├── Daily Scrum/           ← 데일리 스크럼
+    ├── 에이전트 구성/
+    └── 워크플로우/
 ```

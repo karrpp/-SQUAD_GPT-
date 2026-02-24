@@ -51,14 +51,14 @@ export default function Hero() {
           style={styles.cta}
           onClick={handleScrollDown}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#0EA5E9';
+            e.currentTarget.style.backgroundColor = 'var(--color-primary)';
             e.currentTarget.style.transform = 'translateY(-2px)';
             e.currentTarget.style.boxShadow = '0 0 30px rgba(14, 165, 233, 0.6)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor = 'transparent';
             e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 0 20px rgba(14, 165, 233, 0.3)';
+            e.currentTarget.style.boxShadow = 'var(--shadow-glow)';
           }}
         >
           팀 소개 보기
@@ -87,7 +87,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#09090B',
+    backgroundColor: 'var(--color-bg-primary)',
     overflow: 'hidden',
     padding: '2rem',
     marginLeft: 'calc(-50vw + 50%)',
@@ -130,44 +130,41 @@ const styles = {
   logo: {
     fontSize: 'clamp(3rem, 8vw, 5rem)',
     fontWeight: '900',
-    background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
+    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
     letterSpacing: '0.05em',
     textShadow: '0 0 30px rgba(255, 215, 0, 0.3)',
     margin: 0,
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
   },
 
   logoUnderline: {
     width: '120px',
     height: '4px',
-    background: 'linear-gradient(90deg, transparent, #FFD700, transparent)',
+    background: 'linear-gradient(90deg, transparent, var(--color-accent), transparent)',
     borderRadius: '2px',
   },
 
   // 서브 카피
   subtitle: {
     fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
-    color: '#94A3B8',
+    color: 'var(--color-text-tertiary)',
     fontWeight: '500',
     letterSpacing: '0.1em',
     textTransform: 'uppercase',
     margin: 0,
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
   },
 
   // 미션 문구
   mission: {
     fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-    color: '#FFFFFF',
+    color: 'var(--color-text-primary)',
     fontWeight: '400',
     lineHeight: '1.6',
     textAlign: 'center',
     margin: '1rem 0',
     maxWidth: '700px',
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
   },
 
   // CTA 버튼
@@ -176,17 +173,16 @@ const styles = {
     padding: '1rem 2.5rem',
     fontSize: '1.125rem',
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: 'var(--color-text-primary)',
     backgroundColor: 'transparent',
-    border: '2px solid #0EA5E9',
+    border: '2px solid var(--color-primary)',
     borderRadius: '50px',
     cursor: 'pointer',
     transition: 'all 0.3s ease',
-    boxShadow: '0 0 20px rgba(14, 165, 233, 0.3)',
+    boxShadow: 'var(--shadow-glow)',
     display: 'flex',
     alignItems: 'center',
     gap: '0.5rem',
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
   },
 
   ctaArrow: {
@@ -206,33 +202,9 @@ const styles = {
   scrollIndicator: {
     width: '2px',
     height: '40px',
-    backgroundColor: '#0EA5E9',
+    backgroundColor: 'var(--color-primary)',
     borderRadius: '2px',
     opacity: 0.6,
     animation: 'scroll-hint 2s ease-in-out infinite',
   },
 };
-
-// CSS 애니메이션 (글로벌)
-if (typeof document !== 'undefined') {
-  const styleSheet = document.createElement('style');
-  styleSheet.textContent = `
-    @keyframes scroll-hint {
-      0%, 100% {
-        opacity: 0.3;
-        transform: translateY(0);
-      }
-      50% {
-        opacity: 0.8;
-        transform: translateY(10px);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .hero-content {
-        padding: 1rem;
-      }
-    }
-  `;
-  document.head.appendChild(styleSheet);
-}
