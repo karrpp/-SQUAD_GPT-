@@ -60,6 +60,25 @@
 - **세트피스** (기술 검증만 필요): 킥오프 → `@Buffon` → 골
 - **풀 경기** (복잡한 프로젝트): 7단계 전체 진행
 
+## 토의록 기록 규칙 (BINDING)
+
+에이전트 간 논의가 발생하면 **Pedri가 두 곳에 동시 기록**한다.
+
+| 위치 | 경로 | 용도 |
+|------|------|------|
+| 코드 레포 | `playbook/discussions/` | Git 이력 추적, 에이전트 협업 기록 |
+| 옵시디언 | `SQUADv2/Projects/SQUAD_GPT/discussions/` | 검색/링크/리뷰 용 |
+
+**파일명 규칙**: `YYYY-MM-DD_에이전트1-에이전트2_주제.md`
+
+**담당**:
+- **Pedri** — 파일 작성 (두 곳 동시). 루틴 기록은 Pedri가 판단 없이 실행.
+- **Messi** — 전략적 방향 검토가 필요한 토의에만 개입.
+
+**트리거**: 2인 이상 에이전트 논의 → 토의 완료 즉시 기록.
+
+---
+
 ## 에이전트 소환 방법
 
 대화 중 `@이름`으로 호출하면, 해당 에이전트의 관점으로 전환한다.
@@ -94,19 +113,48 @@
 **나머지 스쿼드 (reserves/)**
 - `playbook/prompts/reserves/` — 10명의 전문 에이전트 (필요 시 투입)
 
+## Compact Instructions
+
+When compacting this conversation, preserve the following in order of priority:
+
+1. **에이전트 모델 매핑** — Messi/Guardiola=Opus, CR7/Modric/Buffon=Sonnet, Pedri=Haiku. BINDING.
+2. **현재 진행 중인 프로젝트 맥락** — 활성 태스크, 최근 결정 사항, 미완료 액션 아이템
+3. **핵심 기술 결정** — 기술 스택, 아키텍처 선택, 변경 이유
+4. **토의 결론** — 에이전트 논의의 최종 합의 사항 (과정보다 결론 우선)
+5. **코딩 규칙 및 파일 구조** — 반복 작업 시 일관성 유지에 필요
+
+Drop in order: 중간 과정 대화, 탐색용 파일 읽기, 이미 완료된 태스크 상세 내용.
+
 ## 토큰 예산 규칙
 
 - **기본 모델: Sonnet** (`.claude/settings.json`에 설정됨)
 - Opus 사용 조건: 전략 종합 / 아키텍처 결정 / 위기 상황 (3가지 중 1개)
 - 상세: `playbook/standards/TOKEN_BUDGET.md` 참조
 
+### 에이전트 실행 모델 매핑 (BINDING)
+
+`@이름`으로 에이전트를 소환할 때 반드시 아래 모델로 Task 툴을 실행한다:
+
+| 에이전트 | Task model 파라미터 | 이유 |
+|----------|---------------------|------|
+| `@Messi` | `"opus"` | 방향 설정 + 위기 중재 = 최고 추론 필요 |
+| `@Guardiola` | `"opus"` | 전략 종합 = 최고 추론 필요 |
+| `@CR7` | `"sonnet"` | 아이디어 + 실행 |
+| `@Modric` | `"sonnet"` | 태스크 변환 |
+| `@Buffon` | `"sonnet"` | 품질 검증 |
+| `@Pedri` | `"haiku"` | 루틴 업무 (세션 종료 기록 포함) |
+
+**세션 종료 루틴**: `@Pedri`를 `model: "haiku"`로 호출하여 세션 기록 작성.
+
 ## 코딩 규칙
 
 - **언어**: 한국어 기본. 코드/변수명은 영어.
-- **컴포넌트**: React 함수 컴포넌트 + Hooks.
-- **스타일**: CSS Modules 또는 인라인 스타일. 외부 UI 라이브러리 최소화.
-- **커밋**: 한국어 커밋 메시지 허용. 의미 단위로 커밋.
-- **파일 구조**: `src/` 하위에 기능별 폴더. `playbook/`은 에이전트 관련 자산.
+- **컴포넌트**: React 함수 컴포넌트 + Hooks. JavaScript (TypeScript 미사용).
+- **스타일**: CSS custom properties (`src/styles/tokens.css` 디자인 토큰). 외부 UI 라이브러리 금지.
+- **커밋**: 한국어 허용. 의미 단위. 브랜치 `main` 단일 운영.
+- **파일 구조**: `src/components/`, `src/sections/`, `src/pages/`, `src/data/`, `src/styles/`
+- **상세**: `playbook/standards/SQUAD_GPT_WEBSITE.md` 참조 (현행 규칙)
+- **미래 프로덕트**: `playbook/standards/TECH_STACK.md` 등 나머지 standards 파일 참조
 
 ## 훈련 종료 루틴
 
